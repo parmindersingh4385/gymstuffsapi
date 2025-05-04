@@ -18,7 +18,7 @@ connectDB();
 //const PORT = process.env.PORT;
 
 // Product  routes
-app.use('/api', productRoutes);
+//app.use('/api', productRoutes);
 
 app.get('/', function (req, res) {
     res.send({
