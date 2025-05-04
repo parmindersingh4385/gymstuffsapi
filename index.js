@@ -15,7 +15,7 @@ app.use(cors());
 //connect to mongoDB
 connectDB();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 // Product  routes
 app.use('/api', productRoutes);
