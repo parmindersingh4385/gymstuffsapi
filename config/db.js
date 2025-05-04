@@ -11,8 +11,8 @@ export const connectDB = async () => {
         'mongodb+srv://kaur1kulvir:9988641591%40ptk@cluster0.heeoinj.mongodb.net/db_products?retryWrites=true&w=majority&appName=Cluster0';
     try {
         const conn = await mongoose.connect(MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
+            // useNewUrlParser: true,
+            // useUnifiedTopology: true
         });
         console.log('MongoDB connected.........');
     } catch (error) {
