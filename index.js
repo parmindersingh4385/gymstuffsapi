@@ -1,51 +1,27 @@
-// server.js
-import express from 'express';
-/* import axios from 'axios'; */
-import cors from 'cors';
-import { connectDB } from './config/db.js';
-
-import productRoutes from './routes/productRoutes.js';
+const express = require('express');
+const connectDB = require('./config/db.js');
+const productRoutes = require('./routes/productRoutes.js');
 
 const app = express();
+const cors = require('cors');
 
 // Middleware
 app.use(express.json()); // Body parser
 app.use(cors());
 
 //connect to mongoDB
-//connectDB();
-
-//const PORT = process.env.PORT;
+connectDB();
 
 // Product  routes
-//app.use('/api', productRoutes);
+app.use('/api', productRoutes);
 
 app.get('/', function (req, res) {
     res.send({
         message: 'App working fine'
     });
 });
-/*
-app.get('/product/:id', async (req, res) => {
-    const productId = req.params.id;
 
-    try {
-        const result = await axios.get(
-            `https://affiliate-api.flipkart.net/affiliate/1.0/product.json?id=${productId}`,
-            {
-                headers: {
-                    'Fk-Affiliate-Id': 'singh1par',
-                    'Fk-Affiliate-Token': 'cae044e39c884134b64c164523a4ad51'
-                }
-            }
-        );
-        res.json(result.data);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-}); */
-
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, function (req, res) {
     console.log('App is running at port:- ' + PORT);

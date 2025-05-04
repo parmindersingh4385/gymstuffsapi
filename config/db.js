@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 //mongodb+srv://kaur1kulvir:9988641591@ptk@cluster0.heeoinj.mongodb.net/db_products?retryWrites=true&w=majority&appName=Cluster0
 
-export const connectDB = async () => {
+const connectDB = async function () {
     /* const MONGO_URI =
         'mongodb+srv://parminder:9988641591%40ptk@cluster0.ix992.mongodb.net/db_users?retryWrites=true&w=majority&appName=Cluster0';
  */
@@ -20,3 +20,5 @@ export const connectDB = async () => {
         process.exit(1);
     }
 };
+
+module.exports = connectDB;

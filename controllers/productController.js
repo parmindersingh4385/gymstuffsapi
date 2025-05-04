@@ -1,5 +1,5 @@
-import axios from 'axios';
-import Product from '../models/product.js';
+const axios = require('axios');
+const Product = require('../models/product.js');
 
 const getProductModel = function (jsonData, productType) {
     const productInfo = jsonData.productBaseInfoV1;
@@ -34,38 +34,7 @@ const isProductExists = async function (productId) {
     return isExists;
 };
 
-/* export const addProduct = async function (req, res) {
-    const productId = req.params.id;
-
-    try {
-        const result = await axios.get(
-            `https://affiliate-api.flipkart.net/affiliate/1.0/product.json?id=${productId}`,
-            {
-                headers: {
-                    'Fk-Affiliate-Id': 'singh1par',
-                    'Fk-Affiliate-Token': '12c4b98208f84870b0a4f5e528f69770'
-                }
-            }
-        );
-
-        if (
-            (await isProductExists(result.data.productBaseInfoV1.productId)) ==
-            true
-        ) {
-            res.status(201).json({
-                message: 'Product already exists'
-            });
-        } else {
-            const product = new Product(getProductModel(result.data));
-            await product.save();
-            res.status(201).json(product);
-        }
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-}; */
-
-export const addProduct = async function (req, res) {
+exports.addProduct = async (req, res) => {
     const productId = req.body.id,
         productType = req.body.type;
 
@@ -100,7 +69,7 @@ export const addProduct = async function (req, res) {
     }
 };
 
-export const getAllProducts = async function (req, res) {
+exports.getAllProducts = async (req, res) => {
     try {
         const products = await Product.find();
         res.status(200).json({
@@ -111,48 +80,3 @@ export const getAllProducts = async function (req, res) {
         res.status(500).json({ message: err.message });
     }
 };
-
-/* exports.getUsers = async (req, res) => {
-    try {
-        const users = await User.find();
-        res.status(200).json(users);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-};
-
-exports.getUserById = async (req, res) => {
-    try {
-        const user = await User.findById(req.params.id);
-        if (!user){
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.status(200).json(user);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-};
-
-exports.updateUser = async (req, res) => {
-    try {
-        const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!user){
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.status(200).json(user);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-};
-
-exports.deleteUser = async (req, res) => {
-    try {
-        const user = await User.findByIdAndDelete(req.params.id);
-        if (!user){
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.status(200).json({ message: 'User deleted' });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-}; */

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const ProductSchema = new mongoose.Schema({
     product_id: {
@@ -35,8 +35,4 @@ const ProductSchema = new mongoose.Schema({
     }
 });
 
-const Product = mongoose.model('tbl_products', ProductSchema);
-
-export default Product;
-
-//module.exports = mongoose.model('tbl_products', ProductSchema);
+module.exports = mongoose.model('tbl_products', ProductSchema);
