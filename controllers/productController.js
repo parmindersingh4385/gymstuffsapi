@@ -66,12 +66,8 @@ const isProductExists = async function (productId) {
 }; */
 
 export const addProduct = async function (req, res) {
-    console.log(req.body);
-
     const productId = req.body.id,
         productType = req.body.type;
-
-    console.log('productType:-' + productType);
 
     try {
         const result = await axios.get(
