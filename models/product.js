@@ -9,7 +9,7 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    product_type: {
+    type: {
         type: String,
         required: true
     },
@@ -32,6 +32,14 @@ const ProductSchema = new mongoose.Schema({
     affilate_url: {
         type: Object,
         required: true
+    },
+    created_at: {
+        type: Date,
+        default: Date.now
+    },
+    updated_at: {
+        type: Date,
+        default: Date.now
     }
 });
 

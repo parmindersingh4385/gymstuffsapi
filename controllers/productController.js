@@ -7,7 +7,7 @@ const getProductModel = function (jsonData, productType) {
     let dataObj = {
         title: productInfo.title,
         product_id: productInfo.productId,
-        product_type: productType,
+        type: productType,
         brand: productInfo.productBrand,
         discount: productInfo.discountPercentage,
         price: {
@@ -66,6 +66,19 @@ exports.addProduct = async (req, res) => {
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
+    }
+};
+
+exports.getProductByType = async (req, res) => {
+    const productType = req.params.type;
+    try {
+        const product = await Product.find({ type: productType });
+        res.status(200).json({
+            total_count: product.length,
+            data: product
+        });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
 };
 
