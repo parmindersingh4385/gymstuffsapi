@@ -15,7 +15,7 @@ app.use(cors());
 //connect to mongoDB
 connectDB();
 
-const PORT = process.env.PORT;
+//const PORT = process.env.PORT;
 
 // Product  routes
 app.use('/api', productRoutes);
@@ -45,6 +45,8 @@ app.get('/product/:id', async (req, res) => {
     }
 }); */
 
-app.listen(PORT, () =>
-    console.log(`Proxy running on http://localhost:${PORT}`)
-);
+const PORT = process.env.PORT;
+
+app.listen(PORT, function (req, res) {
+    console.log('App is running at port:- ' + PORT);
+});
