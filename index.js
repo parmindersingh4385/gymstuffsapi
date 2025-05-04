@@ -1,20 +1,31 @@
 // server.js
 import express from 'express';
-import axios from 'axios';
+/* import axios from 'axios'; */
 import cors from 'cors';
+import { connectDB } from './config/db.js';
+
+import productRoutes from './routes/productRoutes.js';
 
 const app = express();
 
+// Middleware
+app.use(express.json()); // Body parser
 app.use(cors());
 
-const PORT = 3001;
+//connect to mongoDB
+connectDB();
+
+const PORT = 3000 || process.env.PORT;
+
+// Product  routes
+app.use('/api', productRoutes);
 
 app.get('/', function (req, res) {
     res.send({
         message: 'App working fine'
     });
 });
-
+/*
 app.get('/product/:id', async (req, res) => {
     const productId = req.params.id;
 
@@ -32,7 +43,7 @@ app.get('/product/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-});
+}); */
 
 app.listen(PORT, () =>
     console.log(`Proxy running on http://localhost:${PORT}`)
