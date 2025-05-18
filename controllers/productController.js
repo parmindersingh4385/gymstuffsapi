@@ -73,7 +73,7 @@ exports.getProductByType = async (req, res) => {
     const productType = req.params.type;
     try {
         const product = await Product.find({ type: productType }).sort({
-            created_at: -1
+            updated_at: -1
         });
         res.status(200).json({
             total_count: product.length,
